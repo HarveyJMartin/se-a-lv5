@@ -1,0 +1,7 @@
+<!-- tickets/templates/tickets/ticket_confirm_delete.html -->
+<h2>Are you sure you want to delete ticket #{{ ticket.id }}?</h2>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Confirm</button>
+    <a href="{% url 'tickets:ticket_list' %}">Cancel</a>
+</form>

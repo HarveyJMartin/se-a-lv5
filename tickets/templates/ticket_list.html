@@ -1,0 +1,14 @@
+<!-- tickets/templates/tickets/ticket_list.html -->
+<h2>Ticket List</h2>
+<a href="{% url 'tickets:ticket_new' %}">Create New Ticket</a>
+<ul>
+    {% for ticket in tickets %}
+    <li>
+        Ticket #{{ ticket.id }} - {{ ticket.customer.username }} (Device: {{ ticket.device }})
+        <a href="{% url 'tickets:ticket_edit' ticket.id %}">Edit</a>
+        <a href="{% url 'tickets:ticket_delete' ticket.id %}">Delete</a>
+    </li>
+    {% empty %}
+    <li>No tickets available.</li>
+    {% endfor %}
+</ul>
