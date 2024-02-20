@@ -1,0 +1,7 @@
+<!-- create_ticket_form.html -->
+<form method="post">
+    {% csrf_token %}
+    {{ form.customer.label_tag }} {{ form.customer }}
+    {{ form.device.label_tag }} {{ form.device }}
+    <button type="submit">Create Ticket</button>
+</form>
