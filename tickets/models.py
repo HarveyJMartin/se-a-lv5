@@ -17,17 +17,17 @@ class Ticket(models.Model):
     closed_date = models.DateTimeField(null=True, blank=True)
     
 
-def set_closed_date(self):
-    if self.resolved and not self.closed_date:
-        self.closed_date = timezone.now()
-    elif not self.resolved:
-        self.closed_date = None
+    def set_closed_date(self):
+        if self.resolved and not self.closed_date:
+            self.closed_date = timezone.now()
+        elif not self.resolved:
+            self.closed_date = None
 
-    super(Ticket, self).save()
-
-
-def set_default_resolution(self):
-        if not self.expected_resolution_date:
-            # If expected_resolution_date is not set, calculate it
-            self.expected_resolution_date = self.created_date + timedelta(days=3)
         super(Ticket, self).save()
+
+
+    def set_default_resolution(self):
+            if not self.expected_resolution_date:
+                # If expected_resolution_date is not set, calculate it
+                self.expected_resolution_date = self.created_date + timedelta(days=3)
+            super(Ticket, self).save()

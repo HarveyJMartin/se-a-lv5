@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Ticket
-from .forms import TicketForm
+from .forms import FullTicketForm, CreateTicketForm
 
 
 # Create your views here.
@@ -15,16 +15,19 @@ def ticket_list(request):
 
 # Create
 def ticket_create(request):
-    form = TicketForm(request.POST or None)
+    form = CreateTicketForm(request.POST or None)
     if form.is_valid():
-        form.save()
+        ticket = form.save(commit=False)
+        ticket.save()
+        ticket.set_default_resolution()
+        ticket.save()
         return redirect('/tickets/')
     return render(request, 'ticket_form.html', {'form': form})
 
 # Update
 def ticket_update(request, pk):
     ticket = get_object_or_404(Ticket, pk=pk)
-    form = TicketForm(request.POST or None, instance=ticket)
+    form = FullTicketForm(request.POST or None, instance=ticket)
     if form.is_valid():
         form.save()
         return redirect('/tickets/')
