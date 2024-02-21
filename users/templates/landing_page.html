@@ -1,4 +1,22 @@
-<h1> landing page </h1>
+{% load static %}
 
-<a href="{% url 'users:login' %}">Login</a>
-<a href="{% url 'users:signup' %}">Sign Up</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Management System</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<div class="navbar">
+    <div class="navbar-brand">TMS</div>
+    <a href="{% url 'users:login' %}" class="nav-item">Login</a>
+    <a href="{% url 'users:signup' %}" class="nav-item">Sign Up</a>
+</div>
+
+<h1 style="text-align: center;">Welcome to the Ticket Management System</h1>
+
+</body>
+</html>
