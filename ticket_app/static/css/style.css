@@ -1,0 +1,30 @@
+/* Main navbar container */
+.navbar {
+    background-color: darkgrey; /* Dark grey background */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px;
+}
+
+/* Navbar brand or plain text on the far left */
+.navbar-brand {
+    margin-right: 20px; /* Spacing between the brand and the buttons */
+    color: white; /* Optional: Change the color of the brand text */
+    font-size: 1.2em; /* Optional: Adjust the font size of the brand */
+}
+
+/* Navbar items (buttons) */
+.nav-item {
+    margin-right: 20px; /* Spacing between each button */
+    padding: 5px 10px;
+    background-color: white; /* Background color of the buttons */
+    color: black; /* Text color of the buttons */
+    border-radius: 5px; /* Optional: Rounded corners for buttons */
+    text-decoration: none; /* Remove underline from links */
+}
+
+.nav-item:hover {
+    background-color: lightgrey; /* Change background on hover */
+    color: black; /* Change text color on hover */
+}
