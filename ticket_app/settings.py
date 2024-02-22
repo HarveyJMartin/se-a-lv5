@@ -133,3 +133,5 @@ LOGIN_REDIRECT_URL = '/tickets/'
 STATICFILES_DIRS = [
     BASE_DIR / "ticket_app/static",
 ]
+
+LOGIN_URL = '/login/'

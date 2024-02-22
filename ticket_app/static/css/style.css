@@ -28,3 +28,42 @@
     background-color: lightgrey; /* Change background on hover */
     color: black; /* Change text color on hover */
 }
+
+.login-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form p {
+    margin: 10px 0;
+}
+
+.login-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.login-button:hover {
+    background-color: #0056b3;
+}
+
+.centering-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Full height of its parent */
+    width: 100%; /* Full width of its parent */
+}
