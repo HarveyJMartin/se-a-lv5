@@ -15,13 +15,16 @@
     <a href="{% url 'users:signup' %}" class="nav-item">Sign Up</a>
 </div>
 
-<h2>Login</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-</form>
-<a href="{% url 'users:signup' %}">Sign up</a>
+<div class="centering-wrapper">
+    <div class="login-container">
+        <h2>Login</h2>
+        <form method="post" class="login-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="login-button">Login</button>
+        </form>
+    </div>
+</div>
 
 </body>
 </html>
