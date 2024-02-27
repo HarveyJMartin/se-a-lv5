@@ -11,9 +11,14 @@
 
 <div class="navbar">
     <div class="navbar-brand">TMS</div>
-    <a href="{% url 'users:login' %}" class="nav-item">My Tickets</a>
-    <a href="{% url 'tickets:ticket_new' %}" class="nav-item">Create Ticket</a>
-</div>
+        <a href="{% url 'users:login' %}" class="nav-item">My Tickets</a>
+        <a href="{% url 'tickets:ticket_new' %}" class="nav-item">Create Ticket</a>
+        <form action="{% url 'users:logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="nav-item">Logout</button>
+        </form>
+    </div>
+    </div>
 
 <h2>Ticket List</h2>
 <ul>

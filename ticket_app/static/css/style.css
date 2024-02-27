@@ -3,7 +3,7 @@
     background-color: darkgrey; /* Dark grey background */
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
     padding: 10px;
 }
 
@@ -18,10 +18,11 @@
 .nav-item {
     margin-right: 20px; /* Spacing between each button */
     padding: 5px 10px;
-    background-color: white; /* Background color of the buttons */
+    background-color: rgb(255, 255, 255); /* Background color of the buttons */
     color: black; /* Text color of the buttons */
     border-radius: 5px; /* Optional: Rounded corners for buttons */
     text-decoration: none; /* Remove underline from links */
+    display: flex;
 }
 
 .nav-item:hover {
@@ -35,6 +36,22 @@
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 300px;
+}
+
+.logout-form button {
+    /* Styles to match .nav-item, if it's not being applied automatically */
+    margin-right: 20px;
+    padding: 5px 10px;
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    border: none; /* Remove default button border */
+    cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+.logout-form button:hover {
+    background-color: lightgrey;
+    color: black;
 }
 
 .login-form {
