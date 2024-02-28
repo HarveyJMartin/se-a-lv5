@@ -1,9 +1,8 @@
-/* Main navbar container */
 .navbar {
     background-color: darkgrey; /* Dark grey background */
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start; /* Align items to the left */
     padding: 10px;
 }
 
