@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Ticket
 from .forms import FullTicketForm, CreateTicketForm
 from django.contrib.auth.decorators import login_required
+from ticket_app.decorators import admin_required
 
 
 # Create your views here.
@@ -18,6 +19,13 @@ def ticket_list(request):
         user_id = request.user.id
         tickets = Ticket.objects.filter(assigned_to_id = user_id)
     return render(request, "ticket_list.html", {'tickets': tickets})
+
+
+@admin_required
+def unassigned_tickets(request):
+    tickets = Ticket.objects.filter(assigned_to_id = None)
+    return render(request, "unassigned_tickets.html", {'tickets': tickets})
+
 
 # Create
 @login_required
