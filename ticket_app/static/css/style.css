@@ -83,3 +83,28 @@
     height: 100%; /* Full height of its parent */
     width: 100%; /* Full width of its parent */
 }
+
+
+table {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd; /* Light grey border */
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    background-color: #f2f2f2; /* Light grey background */
+}
+
+tr:nth-child(even) {background-color: #f9f9f9;} /* Zebra stripes */
+
+th, td {
+    padding: 10px;
+    text-align: center;
+}

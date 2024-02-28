@@ -10,7 +10,13 @@ from django.contrib.auth.decorators import login_required
 # Read
 @login_required
 def ticket_list(request):
-    tickets = Ticket.objects.all()
+    is_admin = request.user.is_staff
+    if is_admin is False:
+        user_id = request.user.id
+        tickets = Ticket.objects.filter(customer_id=user_id)
+    elif is_admin is True:
+        user_id = request.user.id
+        tickets = Ticket.objects.filter(assigned_to_id = user_id)
     return render(request, "ticket_list.html", {'tickets': tickets})
 
 # Create

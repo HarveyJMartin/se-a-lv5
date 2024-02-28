@@ -20,19 +20,39 @@
     </div>
     </div>
 
-<h2>Ticket List</h2>
-<ul>
-    {% for ticket in tickets %}
-    <li>
-        Ticket #{{ ticket.id }} - {{ ticket.customer.username }} (Device: {{ ticket.device }})
-        <a href="{% url 'tickets:ticket_edit' ticket.id %}">Edit</a>
-        <a href="{% url 'tickets:ticket_delete' ticket.id %}">Delete</a>
-    </li>
-    {% empty %}
-    <li>No tickets available.</li>
-    {% endfor %}
-</ul>
+    <h2>Ticket List</h2>
 
+    {% if tickets %}
+    <table>
+        <thead>
+            <tr>
+                <th>Ticket #</th>
+                <th>Device</th>
+                <th>Created Date</th>
+                <th>Assigned To</th>
+                <th>Expected Resolution Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ticket in tickets %}
+            <tr>
+                <td>{{ ticket.id }}</td>
+                <td>{{ ticket.device }}</td>
+                <td>{{ ticket.created_date|date:"Y-m-d H:i" }}</td>
+                <td>{{ ticket.assigned_to.username|default:"Unassigned" }}</td>
+                <td>{{ ticket.expected_resolution_date|date:"Y-m-d" }}</td>
+                <td>
+                    <a href="{% url 'tickets:ticket_edit' ticket.id %}">Edit</a>
+                    <a href="{% url 'tickets:ticket_delete' ticket.id %}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No tickets available.</p>
+    {% endif %}
 
 </body>
 </html>
