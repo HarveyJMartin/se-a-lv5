@@ -13,7 +13,9 @@
     <div class="navbar-brand">TMS</div>
         <a href="{% url 'users:login' %}" class="nav-item">My Tickets</a>
         <a href="{% url 'tickets:ticket_new' %}" class="nav-item">Create Ticket</a>
+        {% if request.user.is_staff %}
         <a href="{% url 'tickets:unassigned_tickets' %}" class="nav-item">Unassigned Tickets</a>
+        {% endif %}
         <form action="{% url 'users:logout' %}" method="post">
             {% csrf_token %}
             <button type="submit" class="nav-item">Logout</button>
