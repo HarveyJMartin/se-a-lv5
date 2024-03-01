@@ -27,6 +27,17 @@ def unassigned_tickets(request):
     return render(request, "unassigned_tickets.html", {'tickets': tickets})
 
 
+@admin_required
+def assign_ticket(request):
+    if request.method == "POST":
+        ticket_id = request.POST.get("ticket_id")
+        ticket = Ticket.objects.get(id=ticket_id)
+        ticket.assigned_to = request.user
+        ticket.save()
+        return redirect("tickets:ticket_list")  # Redirect to an appropriate page after assignment
+    else:
+        return redirect("tickets:unassigned_tickets")  # Handle error or invalid access
+
 # Create
 @login_required
 def ticket_create(request):

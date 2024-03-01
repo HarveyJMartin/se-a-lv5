@@ -1,1 +1,61 @@
-<h1>admin only page</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<div class="navbar">
+    <div class="navbar-brand">TMS</div>
+        <a href="{% url 'users:login' %}" class="nav-item">My Tickets</a>
+        <a href="{% url 'tickets:ticket_new' %}" class="nav-item">Create Ticket</a>
+        {% if request.user.is_staff %}
+        <a href="{% url 'tickets:unassigned_tickets' %}" class="nav-item">Unassigned Tickets</a>
+        {% endif %}
+        <form action="{% url 'users:logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="nav-item">Logout</button>
+        </form>
+    </div>
+    </div>
+
+<h2>Unassigned Tickets</h2>
+{% if tickets %}
+    <table>
+        <thead>
+            <tr>
+                <th>Ticket #</th>
+                <th>Device</th>
+                <th>Created Date</th>
+                <th>Assigned To</th>
+                <th>Expected Resolution Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ticket in tickets %}
+            <tr>
+                <td>{{ ticket.id }}</td>
+                <td>{{ ticket.device }}</td>
+                <td>{{ ticket.created_date|date:"Y-m-d H:i" }}</td>
+                <td>{{ ticket.assigned_to.username|default:"Unassigned" }}</td>
+                <td>{{ ticket.expected_resolution_date|date:"Y-m-d" }}</td>
+                <td>
+                    <!-- Assign Button -->
+                    <form action="{% url 'tickets:assign_ticket' %}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="ticket_id" value="{{ ticket.id }}">
+                        <button type="submit">Assign</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No unassigned tickets available.</p>
+{% endif %}
