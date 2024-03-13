@@ -10,6 +10,7 @@
             <th>Ticket #</th>
             <th>Device</th>
             <th>Created Date</th>
+            <th>Created By</th>
             <th>Assigned To</th>
             <th>Expected Resolution Date</th>
             <th>Actions</th>
@@ -21,6 +22,7 @@
             <td>{{ ticket.id }}</td>
             <td>{{ ticket.device }}</td>
             <td>{{ ticket.created_date|date:"Y-m-d H:i" }}</td>
+            <td>{{ ticket.customer.username|default:"Delete User" }}</td>
             <td>{{ ticket.assigned_to.username|default:"Unassigned" }}</td>
             <td>{{ ticket.expected_resolution_date|date:"Y-m-d" }}</td>
             <td>
