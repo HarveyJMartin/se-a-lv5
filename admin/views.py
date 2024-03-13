@@ -33,6 +33,9 @@ def approve_request(request, request_id):
     admin_request = AdminRequest.objects.get(id=request_id)
     admin_request.status = 'approved'
     admin_request.save()
+    user = admin_request.user
+    user.is_staff = True
+    user.save()
     return redirect ("admin:manage_admin_requests")
 
 @login_required
