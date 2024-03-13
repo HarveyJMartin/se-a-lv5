@@ -1,0 +1,44 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Management System</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="navbar-brand">TMS</div>
+            {% if request.user.is_authenticated %}
+                {% if request.user.is_staff %}
+                    <a href="{% url 'tickets:unassigned_tickets' %}" class="nav-item">Unassigned Tickets</a>
+                {% endif %}
+                <a href="{% url 'users:login' %}" class="nav-item">My Tickets</a>
+                <a href="{% url 'tickets:ticket_new' %}" class="nav-item">Create Ticket</a>
+                <form action="{% url 'users:logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="nav-item">Logout</button>
+                </form>
+            {% else %}
+                <a href="{% url 'users:login' %}" class="nav-item">Login</a>
+                <a href="{% url 'users:signup' %}" class="nav-item">Sign Up</a>
+            {% endif %}
+        </div>
+    </header>
+
+    <main>
+        {% block content %}
+        <!-- Default content goes here -->
+        {% endblock %}
+    </main>
+
+    <footer>
+        <!-- Footer content -->
+    </footer>
+</body>
+</html>
+
+

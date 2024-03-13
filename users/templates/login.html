@@ -1,30 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
+{% extends "base.html" %}
 
-<div class="navbar">
-    <div class="navbar-brand">TMS</div>
-    <a href="{% url 'users:login' %}" class="nav-item">Login</a>
-    <a href="{% url 'users:signup' %}" class="nav-item">Sign Up</a>
-</div>
-
-<div class="centering-wrapper">
-    <div class="login-container">
-        <h2>Login</h2>
-        <form method="post" class="login-form">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="login-button">Login</button>
-        </form>
+{% block content %}
+    <div class="centering-wrapper">
+        <div class="login-container">
+            <h2>Login</h2>
+            <form method="post" class="login-form">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="login-button">Login</button>
+            </form>
+        </div>
     </div>
-</div>
-
-</body>
-</html>
+{% endblock %}

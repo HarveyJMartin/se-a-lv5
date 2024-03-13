@@ -1,61 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
+{% extends "base.html" %}
 
-<div class="navbar">
-    <div class="navbar-brand">TMS</div>
-        <a href="{% url 'users:login' %}" class="nav-item">My Tickets</a>
-        <a href="{% url 'tickets:ticket_new' %}" class="nav-item">Create Ticket</a>
-        {% if request.user.is_staff %}
-        <a href="{% url 'tickets:unassigned_tickets' %}" class="nav-item">Unassigned Tickets</a>
-        {% endif %}
-        <form action="{% url 'users:logout' %}" method="post">
-            {% csrf_token %}
-            <button type="submit" class="nav-item">Logout</button>
-        </form>
-    </div>
-    </div>
+{% block content %}
+<h2>Ticket List</h2>
 
-    <h2>Ticket List</h2>
+{% if tickets %}
+<table>
+    <thead>
+        <tr>
+            <th>Ticket #</th>
+            <th>Device</th>
+            <th>Created Date</th>
+            <th>Assigned To</th>
+            <th>Expected Resolution Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ticket in tickets %}
+        <tr>
+            <td>{{ ticket.id }}</td>
+            <td>{{ ticket.device }}</td>
+            <td>{{ ticket.created_date|date:"Y-m-d H:i" }}</td>
+            <td>{{ ticket.assigned_to.username|default:"Unassigned" }}</td>
+            <td>{{ ticket.expected_resolution_date|date:"Y-m-d" }}</td>
+            <td>
+                <a href="{% url 'tickets:ticket_edit' ticket.id %}">Edit</a>
+                <a href="{% url 'tickets:ticket_delete' ticket.id %}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No tickets available.</p>
+{% endif %}
 
-    {% if tickets %}
-    <table>
-        <thead>
-            <tr>
-                <th>Ticket #</th>
-                <th>Device</th>
-                <th>Created Date</th>
-                <th>Assigned To</th>
-                <th>Expected Resolution Date</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for ticket in tickets %}
-            <tr>
-                <td>{{ ticket.id }}</td>
-                <td>{{ ticket.device }}</td>
-                <td>{{ ticket.created_date|date:"Y-m-d H:i" }}</td>
-                <td>{{ ticket.assigned_to.username|default:"Unassigned" }}</td>
-                <td>{{ ticket.expected_resolution_date|date:"Y-m-d" }}</td>
-                <td>
-                    <a href="{% url 'tickets:ticket_edit' ticket.id %}">Edit</a>
-                    <a href="{% url 'tickets:ticket_delete' ticket.id %}">Delete</a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    {% else %}
-    <p>No tickets available.</p>
-    {% endif %}
+{% endblock %}
 
-</body>
-</html>
+
