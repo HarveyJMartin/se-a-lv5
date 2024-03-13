@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Manage Admin Requests</h2>
+  <ul>
+    {% for request in admin_requests %}
+      <li>
+        {{ request.user.username }} - {{ request.status }}
+        <form action="{% url 'admin:approve_request' request.id %}" method="post">
+          {% csrf_token %}
+          <button type="submit">Approve</button>
+        </form>
+        <form action="{% url 'admin:reject_request' request.id %}" method="post">
+          {% csrf_token %}
+          <button type="submit">Reject</button>
+        </form>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
