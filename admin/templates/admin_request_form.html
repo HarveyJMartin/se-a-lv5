@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Request Admin Access</h2>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Submit Request</button>
+  </form>
+{% endblock %}
