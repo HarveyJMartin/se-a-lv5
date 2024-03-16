@@ -14,12 +14,14 @@
             <div class="navbar-brand">TMS</div>
             {% if request.user.is_authenticated %}
                 {% if request.user.is_staff %}
+                    <a href="{% url 'tickets:ticket_list' %}" class="nav-item">My Tickets</a>
                     <a href="{% url 'tickets:unassigned_tickets' %}" class="nav-item">Unassigned Tickets</a>
-                    <a href="{% url 'admin:manage_admin_requests' %}" class="nav-item">manage admin requests</a>
+                    <a href="{% url 'admin:manage_admin_requests' %}" class="nav-item">Manage Admin Requests</a>
+                {% else %}
+                    <a href="{% url 'tickets:ticket_list' %}" class="nav-item">My Tickets</a>
+                    <a href="{% url 'tickets:ticket_new' %}" class="nav-item">Create Ticket</a>
+                    <a href="{% url 'admin:submit_admin_request' %}" class="nav-item">Request Admin Account</a>
                 {% endif %}
-                <a href="{% url 'tickets:ticket_list' %}" class="nav-item">My Tickets</a>
-                <a href="{% url 'tickets:ticket_new' %}" class="nav-item">Create Ticket</a>
-                <a href="{% url 'admin:submit_admin_request' %}" class="nav-item">Request Admin Account</a>
                 <form action="{% url 'users:logout' %}" method="post">
                     {% csrf_token %}
                     <button type="submit" class="nav-item">Logout</button>
@@ -33,14 +35,12 @@
 
     <main>
         {% block content %}
-        <!-- Default content goes here -->
+
         {% endblock %}
     </main>
 
     <footer>
-        <!-- Footer content -->
+
     </footer>
 </body>
 </html>
-
-
