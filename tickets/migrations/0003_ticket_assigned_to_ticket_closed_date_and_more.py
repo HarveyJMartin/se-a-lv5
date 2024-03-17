@@ -9,48 +9,65 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('devices', '0001_initial'),
-        ('tickets', '0002_rename_id_ticket_id_remove_ticket_device_and_more'),
+        ("devices", "0001_initial"),
+        ("tickets", "0002_rename_id_ticket_id_remove_ticket_device_and_more"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='ticket',
-            name='assigned_to',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='assigned_tickets', to=settings.AUTH_USER_MODEL),
+            model_name="ticket",
+            name="assigned_to",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="assigned_tickets",
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
         migrations.AddField(
-            model_name='ticket',
-            name='closed_date',
+            model_name="ticket",
+            name="closed_date",
             field=models.DateTimeField(blank=True, null=True),
         ),
         migrations.AddField(
-            model_name='ticket',
-            name='created_date',
-            field=models.DateTimeField(auto_now_add=True, default=django.utils.timezone.now),
+            model_name="ticket",
+            name="created_date",
+            field=models.DateTimeField(
+                auto_now_add=True, default=django.utils.timezone.now
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='ticket',
-            name='device',
-            field=models.ForeignKey(blank=True, default=1, on_delete=django.db.models.deletion.CASCADE, to='devices.devices'),
+            model_name="ticket",
+            name="device",
+            field=models.ForeignKey(
+                blank=True,
+                default=1,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="devices.devices",
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='ticket',
-            name='expected_resolution_date',
+            model_name="ticket",
+            name="expected_resolution_date",
             field=models.DateTimeField(default=django.utils.timezone.now),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='ticket',
-            name='resolved',
+            model_name="ticket",
+            name="resolved",
             field=models.BooleanField(default=False),
         ),
         migrations.AlterField(
-            model_name='ticket',
-            name='customer',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='customer_tickets', to=settings.AUTH_USER_MODEL),
+            model_name="ticket",
+            name="customer",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="customer_tickets",
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
     ]

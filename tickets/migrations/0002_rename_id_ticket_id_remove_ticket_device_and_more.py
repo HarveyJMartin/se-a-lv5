@@ -8,23 +8,27 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('tickets', '0001_initial'),
+        ("tickets", "0001_initial"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='ticket',
-            old_name='ID',
-            new_name='id',
+            model_name="ticket",
+            old_name="ID",
+            new_name="id",
         ),
         migrations.RemoveField(
-            model_name='ticket',
-            name='Device',
+            model_name="ticket",
+            name="Device",
         ),
         migrations.AddField(
-            model_name='ticket',
-            name='customer',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL),
+            model_name="ticket",
+            name="customer",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
     ]

@@ -6,25 +6,35 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('devices', '0001_initial'),
+        ("devices", "0001_initial"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='devices',
-            old_name='device_name',
-            new_name='device_brand',
+            model_name="devices",
+            old_name="device_name",
+            new_name="device_brand",
         ),
         migrations.AddField(
-            model_name='devices',
-            name='device_model',
-            field=models.CharField(default='old', max_length=50),
+            model_name="devices",
+            name="device_model",
+            field=models.CharField(default="old", max_length=50),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='devices',
-            name='os_version',
-            field=models.CharField(choices=[('1', 'Mac OS'), ('2', 'Linux'), ('3', 'Windows 10'), ('4', 'Windows 11'), ('5', 'IOS')], default=1, max_length=20),
+            model_name="devices",
+            name="os_version",
+            field=models.CharField(
+                choices=[
+                    ("1", "Mac OS"),
+                    ("2", "Linux"),
+                    ("3", "Windows 10"),
+                    ("4", "Windows 11"),
+                    ("5", "IOS"),
+                ],
+                default=1,
+                max_length=20,
+            ),
             preserve_default=False,
         ),
     ]

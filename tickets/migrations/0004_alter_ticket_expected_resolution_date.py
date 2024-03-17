@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('tickets', '0003_ticket_assigned_to_ticket_closed_date_and_more'),
+        ("tickets", "0003_ticket_assigned_to_ticket_closed_date_and_more"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='ticket',
-            name='expected_resolution_date',
+            model_name="ticket",
+            name="expected_resolution_date",
             field=models.DateTimeField(blank=True, null=True),
         ),
     ]
