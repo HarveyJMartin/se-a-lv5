@@ -69,7 +69,7 @@ def ticket_update(request, pk):
         form.save()
         messages.success(request, 'Ticket updated successfully!')
         return redirect('/tickets/')
-    return render(request, 'edit_ticket_form.html', {'form': form, 'ticket': ticket})
+    return render(request, 'edit_ticket_form.html', {'form': form, 'ticket': ticket,})
 
 # Delete
 @admin_required
@@ -79,3 +79,16 @@ def ticket_delete(request, pk):
         ticket.delete()
         return redirect('/tickets/')
     return render(request, 'ticket_confirm_delete.html', {'ticket': ticket})
+
+
+@login_required
+def resolve_ticket(request, pk):
+    ticket = get_object_or_404(Ticket, pk=pk)
+
+    # Check if the user has permission to resolve the ticket
+    if request.user == ticket.assigned_to or request.user.is_staff:
+        ticket.resolved = True
+        ticket.set_closed_date()
+        ticket.save()
+        messages.success(request, 'Ticket marked as resolved successfully!')
+        return redirect('/tickets/')  # Replace '/tickets/' with the actual path to the ticket list or detail view
