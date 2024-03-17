@@ -17,15 +17,16 @@
                     <a href="{% url 'tickets:ticket_list' %}" class="nav-item">My Tickets</a>
                     <a href="{% url 'tickets:unassigned_tickets' %}" class="nav-item">Unassigned Tickets</a>
                     <a href="{% url 'admin:manage_admin_requests' %}" class="nav-item">Manage Admin Requests</a>
+                    <a href="{% url 'devices:all_devices' %}" class="nav-item">All Devices</a> 
                 {% else %}
                     <a href="{% url 'tickets:ticket_list' %}" class="nav-item">My Tickets</a>
                     <a href="{% url 'tickets:ticket_new' %}" class="nav-item">Create Ticket</a>
                     <a href="{% url 'admin:submit_admin_request' %}" class="nav-item">Request Admin Account</a>
                 {% endif %}
-                <form action="{% url 'users:logout' %}" method="post">
-                    {% csrf_token %}
-                    <button type="submit" class="nav-item">Logout</button>
-                </form>
+                    <form action="{% url 'users:logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="nav-item">Logout</button>
+                    </form>
             {% else %}
                 <a href="{% url 'users:login' %}" class="nav-item">Login</a>
                 <a href="{% url 'users:signup' %}" class="nav-item">Sign Up</a>

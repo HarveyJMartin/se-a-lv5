@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <a href="{% url 'devices:create_device' %}" class="btn btn-default">Create New Device</a>
+<h1>All Devices</h1>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>OS Version</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for device in devices %}
+        <tr>
+            <td>{{ device.id }}</td>
+            <td>{{ device.device_brand }}</td>
+            <td>{{ device.device_model }}</td>
+            <td>{{ device.get_os_version_display }}</td>
+            <td>
+                <a href="{% url 'devices:edit_device' device.id %}" class="btn btn-primary">Update</a>
+            </td>
+            <td>
+                <form action="{% url 'devices:delete_device' device.id %}" method="post" id="delete-device-form" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<script>
+    document.getElementById('delete-device-form').addEventListener('submit', function(event) {
+        if (!confirm("Are you sure you want to delete this device?")) {
+            event.preventDefault(); // Prevent form submission
+        }
+    });
+</script>
+{% endblock %}
