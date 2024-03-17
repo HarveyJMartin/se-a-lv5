@@ -61,5 +61,5 @@ def delete_device(request, pk):
         device.delete()
         messages.success(request, "Device deleted!")
         return redirect("/devices/")
-
-    return render(request, "delete_device.html", {"device": device})
+    else: 
+        return redirect("/devices/")
