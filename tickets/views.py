@@ -10,6 +10,12 @@ from ticket_app.decorators import admin_required
 
 # Read
 @login_required
+def all_tickets(request):
+    tickets = Ticket.objects.all()
+    return render(request, "all_tickets.html", {'tickets': tickets})
+
+# Read
+@login_required
 def ticket_list(request):
     is_admin = request.user.is_staff
     if is_admin is False:
