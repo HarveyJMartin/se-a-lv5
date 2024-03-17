@@ -108,3 +108,8 @@ th, td {
     padding: 10px;
     text-align: center;
 }
+
+#message-box {
+    padding: 10px;
+    border: 1px solid #f5c6cb;
+}

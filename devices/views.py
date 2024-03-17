@@ -3,6 +3,7 @@ from .models import devices
 from django.contrib.auth.decorators import login_required
 from ticket_app.decorators import admin_required
 from .forms import DeviceForm
+from django.contrib import messages
 # Create your views here.
 
 
@@ -19,6 +20,7 @@ def create_device(request):
         if form.is_valid():
             # Save the form and redirect to the all_devices view
             form.save()
+            messages.success(request, 'Device created!')
             return redirect('/devices/')
     else:
         # If it's a GET request, create an empty form
@@ -38,6 +40,7 @@ def edit_device(request, pk):
         if form.is_valid():
             # Save the form and redirect to the all_devices view
             form.save()
+            messages.success(request, 'Device updated!')
             return redirect('/devices/')
     else:
         # If it's a GET request, populate the form with the instance of the device
@@ -54,6 +57,7 @@ def delete_device(request, pk):
     if request.method == 'POST':
         # Delete the device object and redirect to the all_devices view
         device.delete()
+        messages.success(request, 'Device deleted!')
         return redirect('/devices/')
     
     return render(request, 'delete_device.html', {'device': device})
