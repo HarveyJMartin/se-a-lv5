@@ -48,7 +48,7 @@ def ticket_create(request):
         ticket.set_default_resolution()
         ticket.save()
         return redirect('/tickets/')
-    return render(request, 'ticket_form.html', {'form': form})
+    return render(request, 'create_ticket_form.html', {'form': form})
 
 # Update
 @login_required
@@ -58,7 +58,7 @@ def ticket_update(request, pk):
     if form.is_valid():
         form.save()
         return redirect('/tickets/')
-    return render(request, 'ticket_form.html', {'form': form})
+    return render(request, 'edit_ticket_form.html', {'form': form})
 
 # Delete
 @login_required

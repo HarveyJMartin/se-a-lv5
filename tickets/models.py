@@ -14,6 +14,7 @@ class Ticket(models.Model):
     assigned_to = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='assigned_tickets')
     created_date = models.DateTimeField(auto_now_add=True)
     expected_resolution_date = models.DateTimeField(null=True, blank=True)
+    comments = models.CharField(max_length=100, null = False)
     closed_date = models.DateTimeField(null=True, blank=True)
     
 

@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-<form method="post">
+    <h2>New Ticket</h2>
+    <form method="post">
         {% csrf_token %}
-        {{ form.customer.label_tag }} {{ form.customer }}
-        {{ form.device.label_tag }} {{ form.device }}
-        <button type="submit">Create Ticket</button>
+        {{ form.as_p }}
+        <button type="submit">Save</button>
     </form>
 {% endblock %}

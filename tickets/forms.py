@@ -9,4 +9,4 @@ class FullTicketForm(forms.ModelForm):
 class CreateTicketForm(forms.ModelForm):
     class Meta:
         model = Ticket
-        fields = ['customer', 'device']
+        fields = ['customer', 'device', 'comments']
