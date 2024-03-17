@@ -81,8 +81,8 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "ticket_app",
-        "USER": "harv",
-        "PASSWORD": "harv",
+        "USER": "app_account",
+        "PASSWORD": "app_password",
     }
 }
 
