@@ -1,15 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>New Ticket</h2>
+    <h2>Edit Ticket</h2>
+    <p>Customer: {{ticket.customer.username}}</p>
+    <p>Expected Resolution Date: {{ticket.expected_resolution_date}}</p>
+    <p>Assigned to: {{ticket.assigned_to.username|default:"Unassigned"}}</p>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Save</button>
     </form>
-
+    
     <script>
-        document.getElementById("create-ticket-form").addEventListener("submit", function(event) {
+        document.getElementById("edit-ticket-form").addEventListener("submit", function(event) {
             var comments = document.getElementById("id_comments").value;
             var device = document.getElementById("id_device").value;
 
@@ -19,4 +22,5 @@
             }
         });
     </script>
+    
 {% endblock %}
