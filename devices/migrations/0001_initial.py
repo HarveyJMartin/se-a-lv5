@@ -7,15 +7,14 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='devices',
+            name="devices",
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('device_name', models.CharField(max_length=50)),
+                ("id", models.AutoField(primary_key=True, serialize=False)),
+                ("device_name", models.CharField(max_length=50)),
             ],
         ),
     ]

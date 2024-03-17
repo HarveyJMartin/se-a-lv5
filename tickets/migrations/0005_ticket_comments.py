@@ -6,14 +6,14 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('tickets', '0004_alter_ticket_expected_resolution_date'),
+        ("tickets", "0004_alter_ticket_expected_resolution_date"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='ticket',
-            name='comments',
-            field=models.CharField(default='old', max_length=100),
+            model_name="ticket",
+            name="comments",
+            field=models.CharField(default="old", max_length=100),
             preserve_default=False,
         ),
     ]
