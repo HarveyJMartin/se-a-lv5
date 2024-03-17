@@ -7,4 +7,16 @@
         {{ form.as_p }}
         <button type="submit">Save</button>
     </form>
+
+    <script>
+        document.getElementById("create-ticket-form").addEventListener("submit", function(event) {
+            var comments = document.getElementById("id_comments").value;
+            var device = document.getElementById("id_device").value;
+
+            if (!comments || !device) {
+                alert("Comments and Device cannot be empty.");
+                event.preventDefault(); // Prevent form submission
+            }
+        });
+    </script>
 {% endblock %}

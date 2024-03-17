@@ -22,12 +22,14 @@
             <td>{{ ticket.id }}</td>
             <td>{{ ticket.device }}</td>
             <td>{{ ticket.created_date|date:"Y-m-d H:i" }}</td>
-            <td>{{ ticket.customer.username|default:"Delete User" }}</td>
+            <td>{{ ticket.customer.username|default:"Deleted User" }}</td>
             <td>{{ ticket.assigned_to.username|default:"Unassigned" }}</td>
             <td>{{ ticket.expected_resolution_date|date:"Y-m-d" }}</td>
             <td>
                 <a href="{% url 'tickets:ticket_edit' ticket.id %}">Edit</a>
-                <a href="{% url 'tickets:ticket_delete' ticket.id %}">Delete</a>
+                {% if user.is_staff %}
+                    <a href="{% url 'tickets:ticket_delete' ticket.id %}">Delete</a>
+                {% endif %}
             </td>
         </tr>
         {% endfor %}
