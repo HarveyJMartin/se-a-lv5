@@ -36,6 +36,22 @@
     </header>
 
     <main>
+        <script>
+            function dismissMessage() {
+                var messageBox = document.getElementById('message-box');
+                if (messageBox) {
+                    messageBox.style.display = 'none';
+                }
+            }
+        </script>
+        {% if messages %}
+            <div id="message-box" style="position: fixed; top: 30; width: 100%; background-color: #f8d7da; color: #721c24; text-align: center; z-index: 1000;">
+                {% for message in messages %}
+                    <span>{{ message }}</span>
+                    <button onclick="dismissMessage()" style="margin-left: 15px;">Dismiss</button>
+                {% endfor %}
+            </div>
+        {% endif %}
         {% block content %}
 
         {% endblock %}

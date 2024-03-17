@@ -3,6 +3,7 @@ from .models import Ticket
 from .forms import EditTicketForm, CreateTicketForm
 from django.contrib.auth.decorators import login_required
 from ticket_app.decorators import admin_required
+from django.contrib import messages
 
 
 # Create your views here.
@@ -40,6 +41,7 @@ def assign_ticket(request):
         ticket = Ticket.objects.get(id=ticket_id)
         ticket.assigned_to = request.user
         ticket.save()
+        messages.success(request, 'Ticket successfully assigned!')
         return redirect("tickets:ticket_list")  # Redirect to an appropriate page after assignment
     else:
         return redirect("tickets:unassigned_tickets")  # Handle error or invalid access
@@ -54,6 +56,7 @@ def ticket_create(request):
         ticket.save()
         ticket.set_default_resolution()
         ticket.save()
+        messages.success(request, 'Ticket created successfully!')
         return redirect('/tickets/')
     return render(request, 'create_ticket_form.html', {'form': form})
 
@@ -64,6 +67,7 @@ def ticket_update(request, pk):
     form = EditTicketForm(request.POST or None, instance=ticket)
     if form.is_valid():
         form.save()
+        messages.success(request, 'Ticket updated successfully!')
         return redirect('/tickets/')
     return render(request, 'edit_ticket_form.html', {'form': form, 'ticket': ticket})
 
