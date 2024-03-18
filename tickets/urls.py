@@ -11,7 +11,7 @@ urlpatterns = [
     path("all/", views.all_tickets, name="all_tickets"),
     # URL for created a new ticket
     path("new/", views.ticket_create, name="ticket_new"),
-    # URL for viewing unassigned tickets 
+    # URL for viewing unassigned tickets
     path("unassigned/", views.unassigned_tickets, name="unassigned_tickets"),
     # URL to assign a ticket
     path("assign_ticket/", views.assign_ticket, name="assign_ticket"),
