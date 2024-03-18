@@ -6,6 +6,7 @@ from .forms import DeviceForm
 
 # Create your tests here.
 
+
 class DevicesViewsTestCase(TestCase):
     def setUp(self):
         # Create user accounts for testing
