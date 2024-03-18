@@ -25,7 +25,7 @@ def submit_admin_request(request):
 
 @admin_required
 def manage_admin_requests(request):
-    if request.user.is_superuser:
+    if request.user.is_staff:
         admin_requests = AdminRequest.objects.filter(status="pending")
         return render(
             request, "manage_admin_requests.html", {"admin_requests": admin_requests}
@@ -34,7 +34,7 @@ def manage_admin_requests(request):
         return redirect("tickets:ticket_list")
 
 
-@login_required
+@admin_required
 def approve_request(request, request_id):
     admin_request = AdminRequest.objects.get(id=request_id)
     admin_request.status = "approved"
@@ -46,7 +46,7 @@ def approve_request(request, request_id):
     return redirect("admin:manage_admin_requests")
 
 
-@login_required
+@admin_required
 def reject_request(request, request_id):
     admin_request = AdminRequest.objects.get(id=request_id)
     admin_request.status = "rejected"
