@@ -69,26 +69,30 @@ class TicketViewsTestCase(TestCase):
         # Check user is redirected (admin decorator redirects to login page)
         self.assertTrue(response.status_code, 302)
 
-# Testing redirection to confirmation page of delete ticket 
+    # Testing redirection to confirmation page of delete ticket
     def test_ticket_delete_confirmation_admin(self):
         # Log in as admin
-        self.client.login(username='admin', password='12345')
+        self.client.login(username="admin", password="12345")
         # Create a GET request to the delete view
-        response = self.client.get(reverse('tickets:ticket_delete', args=[self.ticket.id]))
+        response = self.client.get(
+            reverse("tickets:ticket_delete", args=[self.ticket.id])
+        )
         # Check the response status code is 200
         self.assertEqual(response.status_code, 200)
         # Check that the correct template is used
-        self.assertTemplateUsed(response, 'ticket_confirm_delete.html')
+        self.assertTemplateUsed(response, "ticket_confirm_delete.html")
         # Correct ticket is passed to the template
-        self.assertEqual(response.context['ticket'].id, self.ticket.id)
+        self.assertEqual(response.context["ticket"].id, self.ticket.id)
 
-# Test admin can delete ticket after confirmation 
+    # Test admin can delete ticket after confirmation
     def test_ticket_delete_admin(self):
         # Log in as admin
-        self.client.login(username='admin', password='12345')
+        self.client.login(username="admin", password="12345")
         # Create a POST request to the delete view
-        response = self.client.post(reverse('tickets:ticket_delete', args=[self.ticket.id]))
+        response = self.client.post(
+            reverse("tickets:ticket_delete", args=[self.ticket.id])
+        )
         # Check that the ticket has been deleted
         self.assertEqual(Ticket.objects.filter(id=self.ticket.id).count(), 0)
         # Verify that the response is a redirect to the ticket list page
-        self.assertRedirects(response, '/tickets/')
+        self.assertRedirects(response, "/tickets/")
