@@ -47,7 +47,7 @@ def assign_ticket(request):
             "tickets:ticket_list"
         )  # Redirect to an appropriate page after assignment
     else:
-        return redirect("tickets:unassigned_tickets")  # Handle error or invalid access
+        return redirect("tickets:ticket_list")  # Handle error or invalid access
 
 
 # Create
