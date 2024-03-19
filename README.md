@@ -19,7 +19,7 @@ To use this app locally the following are required.
 
 ## Usage
 
-To start the web app run the following command from the root directory of the project `python3 manage.py runserver`.
+To start the web app run the following command from the root directory of the project `python manage.py runserver`.
 
 ## Features
 
@@ -79,7 +79,7 @@ The templates directory stores the code for the following functionality.
 
 The app contains a variety of unit tests on the devices, tickets and admin functionality. Note that not all view functions are covered by unit tests. Prior to each merge manual testing of all new features was completed. 
 
-For example, the unit tests in devices can be ran using `python3 manage.py test devices`.
+For example, the unit tests in devices can be ran using `python manage.py test devices`.
 
 ## Deployment
 
