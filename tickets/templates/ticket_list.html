@@ -32,6 +32,7 @@
             <td>{{ ticket.comments}}</td>
             <td>{{ ticket.assigned_to.username|default:"Unassigned" }}</td>
             <td>{{ ticket.expected_resolution_date|date:"Y-m-d" }}</td>
+            <td>{{ ticket.resolved}}</td>
             
             <td>
                 <a href="{% url 'tickets:ticket_edit' ticket.id %}">Edit</a>
